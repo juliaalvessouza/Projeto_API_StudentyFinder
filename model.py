@@ -11,36 +11,40 @@ class Student(BaseModel):
             "exemplo": {
                 "name": "Fábio Magalhães",
                 "email": "magalhaes@email.com",
-                "interest": "Big Data no Agronegócio"
+                "interest": "tecnologia"
             }
         }
-
-class University(BaseModel):
-    name: str = Field(...)
-    email: str = Field(...)
-    interest: str = Field(...)
-
-    class Config:
-        schema_extra = {
-            "exemplo": {
-                "name": "Fatec Pompeia",
-                "address": "Av Fundação Shunji Nishimura - 605 - Distrito Industrial"
-            }
-        }        
-
 class Courses(BaseModel):
     name: str = Field(...)
     area: str = Field(...)
-    university: University = Field(...)
 
     class Config:
         schema_extra = {
             "exemplo": {
                 "name": "Big Data no Agronegócio",
                 "area": "Tecnologia e informação",
-                "university": "Fatec Pompeia"
             }
         } 
+
+
+class University(BaseModel):
+    name: str = Field(...)
+    address: str = Field(...)
+    courses: list = Field(...)
+
+    class Config:
+        schema_extra = {
+            "exemplo": {
+                "name": "Fatec Pompeia",
+                "address": "Av Fundação Shunji Nishimura - 605 - Distrito Industrial",
+                "courses": [
+                    {
+			            "name": "big data", 
+			            "area": "tecnologia"
+		            }
+                ]
+            }
+        }        
 
 class Ads(BaseModel):
     total_sutudents: int = Field(...)
