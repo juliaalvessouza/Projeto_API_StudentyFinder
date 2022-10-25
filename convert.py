@@ -28,7 +28,10 @@ def convert_ads(ads) -> dict:
         "id": str(ads["_id"]),
         "total_students": ads["total_students"],
         "content": ads["content"],
-        "courses": ads["courses"]
+        "courses": ads["courses"],
+        "student": ads["student"],
+        "university": ads["university"]
+
     }
 
 def convert_email(email) -> dict:

@@ -13,9 +13,10 @@ async def findAllUniversity() -> dict:
     return list 
 
 async def findUniversityById(id: str) -> dict:
-    university = collectionUniversity.find_one({"_id": ObjectId(id)})
+    university = await collectionUniversity.find_one({"_id": ObjectId(id)})
     if university:
-        return convert_university(university) 
+        return convert_university(university)
+        
 
 async def createUniversity(data: dict) -> dict:
     university = await collectionUniversity.insert_one(data)
@@ -32,3 +33,9 @@ async def UpdateUniversity(id: str, data: dict):
         if university_updated:
             return True
         return False
+
+async def DeleteUniversity(id: str):
+    university = await collectionUniversity.find_one({"_id": ObjectId(id)})
+    if university:
+        await collectionUniversity.delete_one({"_id": ObjectId(id)})
+        return True

@@ -29,6 +29,8 @@ class Courses(BaseModel):
 
 class University(BaseModel):
     name: str = Field(...)
+    email: str = Field(...)
+    senha: str = Field(...)
     address: str = Field(...)
     courses: list = Field(...)
 
@@ -36,6 +38,8 @@ class University(BaseModel):
         schema_extra = {
             "exemplo": {
                 "name": "Fatec Pompeia",
+                "email": "fatec.pompeia@gov.com.br",
+                "senha": "1234",
                 "address": "Av Fundação Shunji Nishimura - 605 - Distrito Industrial",
                 "courses": [
                     {
@@ -51,6 +55,7 @@ class Ads(BaseModel):
     content: str = Field(...)
     courses: list = Field(...)
     students: list = Field(...)
+    university: list = Field(...)
 
     class Config:
         schema_extra = {
@@ -69,6 +74,12 @@ class Ads(BaseModel):
                         "email": "magalhaes@email.com",
                         "interest": "tecnologia"
 		            }
+                ],
+                "university": [
+                    {
+                        "name": "Fatec Pompeia",
+                        "email": "fatec.pompeia@gov.com.br"                     
+                    }
                 ]
             }
         }   

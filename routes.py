@@ -41,6 +41,14 @@ async def postUniversity(university : University = Body(...)):
     new = await createUniversity(data)
     return new
 
+@app.delete("/university/{id}")
+async def deleteUniversity(id: str):
+    data = await DeleteUniversity(id)
+    if data:
+        return {"deleted": True}
+    else:
+        return {"deleted": False}    
+
 #ads
 @app.get("/ads")
 async def getAllAds():
@@ -53,6 +61,14 @@ async def getAllAds():
 @app.get("/ads/{id}")
 async def getAdsById(id: str):
     data = await findAdsById(id)
+    if data:
+        return data
+    else:
+        return {"status": "Not Found"}
+
+@app.get("/ads/university/{name}")
+async def getAdsUniversityByName(name: str):
+    data = await findAdsUniversityByName(name)
     if data:
         return data
     else:
